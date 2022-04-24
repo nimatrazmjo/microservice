@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: angular-depl
+spec:
+  selector:
+    matchLabels:
+      app: angular-depl
+  template:
+    metadata:
+      labels:
+        app: angular-depl
+    spec:
+      containers:
+      - name: angular-depl
+        image: razmjo/angular
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: angular-service
+spec:
+  selector:
+    app: angular-depl
+  ports:
+  - port: 80
+    targetPort: 80
