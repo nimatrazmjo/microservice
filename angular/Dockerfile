@@ -1,4 +1,4 @@
-FROM node:alpine As builder
+FROM node:lts-alpine3.15 As builder
 
 WORKDIR /usr/src/app
 
@@ -14,4 +14,4 @@ RUN npm run build --prod
 
 FROM nginx:alpine
 
-COPY --from=builder /usr/src/app/dist/SampleApp/ /usr/share/nginx/html
+COPY --from=builder /usr/src/app/dist/angular/ /usr/share/nginx/html/admin

@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: angular-port
+  namespace: default
+spec:
+  selector:
+    app: angular-depl
+  type: NodePort
+  sessionAffinity: None
+  sessionAffinityConfig:
+    clientIP:
+      timeoutSeconds: 10800
+  ports:
+  - name: angular-port
+    protocol: TCP
+    port: 80
+    targetPort: 80
+    nodePort: 32112
